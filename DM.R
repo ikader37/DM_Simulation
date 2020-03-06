@@ -45,7 +45,7 @@ curve(dnorm(x,4,1),-2,10,col="pink")
 curve(dnorm(x,5,4),-2,10,col="black",add = T)
 legend("topleft",legend = c("N(4,1)","N(5,4)"),col = c("pink","black"),lty = 1:2,cex = 0.8,title = "Courbe densite",text.font = 4,bg="lightblue")
 
-#Exercice 4
+#Exercice 5
 #Z->N(0,1)
 #P(Z<=-0.5)
 pnorm(-0.5,0,1)
@@ -53,18 +53,31 @@ pnorm(-0.5,0,1)
 1-pnorm(1.5,0,1)
 1-pnorm(-1,0,1)
 
-#P(|Z|<=1.96)=P(Z<=1.96) U P(Z>=-1.96)=P(Z<=1.96)+1-P(Z<=-1.96)
+#P(|Z|<=1.96)=P(Z<=1.96)-P(Z<=-1.96)
+pnorm(1.96,0,1)-pnorm(-1.96,0,1)
+
 
 pnorm(1.96,0,1)-pnorm(-1.96,0,1)
+
+#P(|Z| ≤ 2.58)=F(2.58)-F(2.58)
+pnorm(2.58,0,1)-pnorm(-2.58,0,1)
+#P(|Z|>=3)
+1+pnorm(-3,0,1)-pnorm(3,0,1)
+
+
 
 #Exercice 6
 #X->N(15,9)
 #1)
 #P(16<=X<=20)
-sum(dnorm(16:20,15,9))
-1-pnorm(18,15,9)
+p_1<-sum(dnorm(16:20,15,9))
+p_2<-1-pnorm(18,15,9)
 
-pnorm(5,15,9)
+p_3<-pnorm(5,15,9)
+#P(|X-15|>5,88)=P(-5,88<=X-15<=5,88)=P(-5,88+15<=X<=5,88+15)=F(20,88)-F(10,88)
+p_4<- pnorm(20.88,15,9)-pnorm(10.88,15,9)
+
+print(p_4)
 
 Fn_R<-stepfun(6:24,c(0,pnorm(6:24,15,9)))
 plot(Fn_R,vertical=FALSE ,col="red", ,main = "Fonction de repartition de la loi N(15,9) sur [6,24]")
@@ -80,11 +93,38 @@ legend("bottomright",legend = c("B(50,0.4)","N(20,12)"),col = c("red","blue"),lt
 
 #divisons l'ecran graphique en 2 ligne 2 colonnes
 par(mfrow=c(2,2))
-curve(dexp(x,1),xlim =c(0,3) ,col="Red",title(main = "graphe de la densite de la loi Exp(1) sur"))
+curve(dexp(x,1),xlim =c(0,3) ,col="Red",main = "graphe de la densite de la loi Exp(1) sur [0;3]")
 
-curve(dexp(x,2),xlim=c(0,3),col="blue",title(main = "graphe de la densite de la loi Exp(2) sur [0,3]"))
+curve(dexp(x,2),xlim=c(0,3),col="blue",main = "graphe de la densite de la loi Exp(2) sur [0,3]")
 
-curve(dexp(x,0.5),xlim=c(0,20),col="black",title(main = "graphe de la densite de la loi Exp(0.5) sur [0;20]"))
+curve(dexp(x,0.5),xlim=c(0,20),col="black",main = "graphe de la densite de la loi Exp(0.5) sur [0;20]")
 
-curve(dexp(x,0.1),xlim=c(0,60),col="pink",title(main = "graphe de la densite de la loi Exp(0.1) sur [0;60]"))
+curve(dexp(x,0.1),xlim=c(0,60),col="pink",main = "graphe de la densite de la loi Exp(0.1) sur [0;60]")
+
+#Exercice 8
+#1)
+z_1<-qnorm(0.00135,0,1)
+z_2<-qnorm(0.025,0,1)
+z_3<-qnorm(0.95,0,1)
+z_4<-qnorm(0.999,0,1)
+z_5<-qnorm(0.995,0,1)
+z_6<-qnorm(0.99865,0,1)
+
+print(z_1)
+print(z_2)
+print(z_3)
+print(z_4)
+print(z_5)
+print(z_6)
+
+
+#2)
+
+x_1<-qnorm(0.975,19,3)
+x_2<-qnorm(0.025,19,3)
+print(x_1)
+print(x_2)
+
+x_3<-19+sqrt(3)*qnorm(0.975,0,1)
+print(x_3)
 
